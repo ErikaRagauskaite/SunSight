@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/index.css" rel="stylesheet" />
+    <title>SunSight</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Sun<span>Sight</span></h1>
+      </div>
+      <div class="content">
+        <div class="content-left">
+          <h2>What is SunSight?</h2>
+          <p>
+            SunSight allows you to see the sunrise and sunset times for any
+            location on Earth.
+          </p>
+          <h2>Where are you?</h2>
+          <form>
+            <input
+              type="text"
+              id="location"
+              placeholder="Enter your location"
+            />
+            <button type="button" id="submit">Submit</button>
+          </form>
+        </div>
+        <div>
+          <p id="sunset">Sunset:</p>
+          <p id="sunrise">Sunrise:</p>
+          <p id="visability">Visability:</p>
+          <p id="weather">Weather:</p>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
