@@ -3,19 +3,29 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="css/index.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courgette&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
     <title>SunSight</title>
   </head>
   <body>
     <div class="container">
       <div class="header">
-        <h1>Sun<span>Sight</span></h1>
+        <h1>Soluna</h1>
       </div>
       <div class="content">
         <div class="content-left">
-          <h2>What is SunSight?</h2>
+          <h2>What is Soluna?</h2>
           <p>
-            SunSight allows you to see the sunrise and sunset times for any
+            Soluna allows you to see the sunrise and sunset times for any
             location on Earth.
           </p>
           <h2>Where are you?</h2>
@@ -28,10 +38,10 @@
             <button type="button" id="submit">Submit</button>
           </form>
         </div>
-        <div>
+        <div class="weather-result">
           <p id="sunset">Sunset:</p>
           <p id="sunrise">Sunrise:</p>
-          <p id="visability">Visability:</p>
+
           <p id="weather">Weather:</p>
         </div>
       </div>

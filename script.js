@@ -25,7 +25,7 @@ document.getElementById("submit").addEventListener("click", function () {
         throw new Error("Error fetching data: " + data.message);
       }
 
-      const visibility = data.visibility / 1000; // Convert visibility from meters to kilometers
+      /* const visibility = data.visibility / 1000; // Convert visibility from meters to kilometers  */
       let weatherDescription = data.weather[0].description;
       weatherDescription =
         weatherDescription.charAt(0).toUpperCase() +
@@ -41,9 +41,9 @@ document.getElementById("submit").addEventListener("click", function () {
 
       document.getElementById("sunset").innerText = `Sunset: ${localSunset}`;
       document.getElementById("sunrise").innerText = `Sunrise: ${localSunrise}`;
-      document.getElementById(
+      /*document.getElementById(
         "visability"
-      ).innerText = `Visibility: ${visibility} km`;
+      ).innerText = `Visibility: ${visibility} km`; */
       document.getElementById(
         "weather"
       ).innerText = `Weather: ${weatherDescription}`;
