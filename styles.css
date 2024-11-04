@@ -83,6 +83,11 @@ input:hover {
 
 /*responsive design*/
 @media (max-width: 768px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
   h1 {
     font-size: 3em;
   }
@@ -93,6 +98,7 @@ input:hover {
 
   p {
     font-size: 1em;
+    word-wrap: break-word;
   }
 
   button {
