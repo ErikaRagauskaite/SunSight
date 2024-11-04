@@ -1,3 +1,6 @@
+const weatherAPI = "https://api.openweathermap.org/data/2.5/weather";
+const apiKey = "6933b8658be30558e99eb22e969efe1f"; // Your OpenWeatherMap API key
+
 document.getElementById("submit").addEventListener("click", function () {
   const location = document.getElementById("location").value;
   if (!location) {
@@ -5,7 +8,7 @@ document.getElementById("submit").addEventListener("click", function () {
     return;
   }
 
-  const url = `/weather?q=${location}`;
+  const url = `${weatherAPI}?q=${location}&appid=${apiKey}`;
   console.log("Fetching URL:", url);
 
   fetch(url)
@@ -22,6 +25,7 @@ document.getElementById("submit").addEventListener("click", function () {
         throw new Error("Error fetching data: " + data.message);
       }
 
+      /* const visibility = data.visibility / 1000; // Convert visibility from meters to kilometers  */
       let weatherDescription = data.weather[0].description;
       weatherDescription =
         weatherDescription.charAt(0).toUpperCase() +
@@ -37,6 +41,9 @@ document.getElementById("submit").addEventListener("click", function () {
 
       document.getElementById("sunset").innerText = `Sunset: ${localSunset}`;
       document.getElementById("sunrise").innerText = `Sunrise: ${localSunrise}`;
+      /*document.getElementById(
+        "visability"
+      ).innerText = `Visibility: ${visibility} km`; */
       document.getElementById(
         "weather"
       ).innerText = `Weather: ${weatherDescription}`;
