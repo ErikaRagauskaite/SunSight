@@ -1,5 +1,4 @@
-const weatherAPI = "https://api.openweathermap.org/data/2.5/weather";
-const apiKey = "6933b8658be30558e99eb22e969efe1f"; // Your OpenWeatherMap API key
+const weatherAPI = "https://api.open-meteo.com/v1/forecast";
 
 document.getElementById("submit").addEventListener("click", function () {
   const location = document.getElementById("location").value;
@@ -8,10 +7,23 @@ document.getElementById("submit").addEventListener("click", function () {
     return;
   }
 
-  const url = `${weatherAPI}?q=${location}&appid=${apiKey}`;
-  console.log("Fetching URL:", url);
+  // Geocoding API to get latitude and longitude from location name
+  const geocodeAPI = `https://nominatim.openstreetmap.org/search?q=${location}&format=json&limit=1`;
 
-  fetch(url)
+  fetch(geocodeAPI)
+    .then((response) => response.json())
+    .then((geocodeData) => {
+      if (geocodeData.length === 0) {
+        throw new Error("Location not found");
+      }
+
+      const { lat, lon } = geocodeData[0];
+      const url = `${weatherAPI}?latitude=${lat}&longitude=${lon}&daily=sunrise,sunset&hourly=cloud_cover&timezone=auto`;
+
+      console.log("Fetching URL:", url);
+
+      return fetch(url);
+    })
     .then((response) => {
       console.log("Response status:", response.status);
       if (!response.ok) {
@@ -21,32 +33,19 @@ document.getElementById("submit").addEventListener("click", function () {
     })
     .then((data) => {
       console.log("API response data:", data);
-      if (data.cod !== 200) {
-        throw new Error("Error fetching data: " + data.message);
+      if (!data.daily || !data.hourly) {
+        throw new Error("Error fetching data: Invalid response format");
       }
 
-      /* const visibility = data.visibility / 1000; // Convert visibility from meters to kilometers  */
-      let weatherDescription = data.weather[0].description;
-      weatherDescription =
-        weatherDescription.charAt(0).toUpperCase() +
-        weatherDescription.slice(1);
+      const sunrise = new Date(data.daily.sunrise[0]).toLocaleTimeString();
+      const sunset = new Date(data.daily.sunset[0]).toLocaleTimeString();
+      const cloudCover = data.hourly.cloud_cover[0];
 
-      const timezoneOffset = data.timezone; // Timezone offset in seconds
-      const localSunset = new Date(
-        (data.sys.sunset + timezoneOffset) * 1000
-      ).toLocaleTimeString();
-      const localSunrise = new Date(
-        (data.sys.sunrise + timezoneOffset) * 1000
-      ).toLocaleTimeString();
-
-      document.getElementById("sunset").innerText = `Sunset: ${localSunset}`;
-      document.getElementById("sunrise").innerText = `Sunrise: ${localSunrise}`;
-      /*document.getElementById(
-        "visability"
-      ).innerText = `Visibility: ${visibility} km`; */
+      document.getElementById("sunset").innerText = `Sunset: ${sunset}`;
+      document.getElementById("sunrise").innerText = `Sunrise: ${sunrise}`;
       document.getElementById(
-        "weather"
-      ).innerText = `Weather: ${weatherDescription}`;
+        "cloud-cover"
+      ).innerText = `Cloud Cover: ${cloudCover}%`;
     })
     .catch((error) => {
       console.error("Error:", error);
