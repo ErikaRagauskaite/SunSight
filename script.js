@@ -1,7 +1,7 @@
-require("dotenv").config();
+require("dotenv").config(); // Load environment variables from .env file
 
 const weatherAPI = "https://api.openweathermap.org/data/2.5/weather";
-const apiKey = process.env.API_KEY; // Your OpenWeatherMap API key
+const apiKey = process.env.API_KEY; // Access the API key from the environment variable
 
 document.getElementById("submit").addEventListener("click", function () {
   const location = document.getElementById("location").value;
@@ -27,7 +27,6 @@ document.getElementById("submit").addEventListener("click", function () {
         throw new Error("Error fetching data: " + data.message);
       }
 
-      /* const visibility = data.visibility / 1000; // Convert visibility from meters to kilometers  */
       let weatherDescription = data.weather[0].description;
       weatherDescription =
         weatherDescription.charAt(0).toUpperCase() +
@@ -43,9 +42,6 @@ document.getElementById("submit").addEventListener("click", function () {
 
       document.getElementById("sunset").innerText = `Sunset: ${localSunset}`;
       document.getElementById("sunrise").innerText = `Sunrise: ${localSunrise}`;
-      /*document.getElementById(
-        "visability"
-      ).innerText = `Visibility: ${visibility} km`; */
       document.getElementById(
         "weather"
       ).innerText = `Weather: ${weatherDescription}`;
