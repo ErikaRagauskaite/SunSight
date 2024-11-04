@@ -28,3 +28,4 @@ exports.handler = async function (event, context) {
     };
   }
 };
+// The code above is a Netlify function that fetches weather data from the OpenWeather API. It is similar to the server-side code in the Express.js example, but it is written as a standalone function that can be deployed to Netlify Functions.
