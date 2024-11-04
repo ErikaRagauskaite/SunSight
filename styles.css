@@ -23,7 +23,7 @@ body {
 
 h1 {
   font-family: "Courgette", cursive;
-  font-size: 5em;
+  font-size: 7em;
   background: linear-gradient(to right, #433ab4, #fd571d, #fcc445);
   -webkit-background-clip: text;
   color: transparent;
@@ -89,7 +89,7 @@ input:hover {
   }
 
   h1 {
-    font-size: 3em;
+    font-size: 4em;
   }
 
   h2 {
